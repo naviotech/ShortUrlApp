@@ -1,0 +1,36 @@
+footer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 60px 24px;
+    gap:30px;
+    background-color: #232127;
+    @include breakpoint("tablet"){
+        flex-direction: initial;
+        justify-content: space-around;
+    }
+    figure{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    nav{
+        display: flex;
+        justify-content: center;
+        gap:20px;
+        @include breakpoint("tablet"){
+            gap:40px;
+        }
+        a{
+            @include breakpoint("tablet"){
+                font-size: 32px;
+            }
+            text-decoration: none;
+            color: white;
+            font-size: 24px;
+            &:hover{
+                transform: scale(1.2);
+            }
+        }
+    }
+}
