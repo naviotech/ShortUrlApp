@@ -5,6 +5,7 @@ main{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     
     .contenedor-formulario{
         @include breakpoint("desktop"){
@@ -117,16 +118,20 @@ main{
         flex-direction: column;
         gap:20px;
         margin-top: 20px;
-        
-        
-        
         .contenedor-card{
             background-color: rgba(234, 234, 234, 0.782);
             display: flex;
             align-items: center;
-            justify-content: space-around;
+            justify-content: space-between;
             border-radius: 12px;
             overflow: hidden;
+            padding: 10px 20px;
+            @include breakpoint("tablet"){
+                padding: 10px 60px 10px 20px
+            }
+            @include breakpoint("desktopxl"){
+                padding: 10px 80px 10px 20px
+            }
             .card{
                 display: flex;
                 flex-direction: column;

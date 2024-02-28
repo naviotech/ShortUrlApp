@@ -1,5 +1,5 @@
 .info{
-    
+    max-width: 1500px;
     margin-bottom: 80px;
     padding:0px 24px 0 24px;
     @include breakpoint("tablet"){
@@ -78,7 +78,7 @@
     }
 }
 .ultimo{
-    
+    width: 100%;
     background-image: url("../../img/fondoformulariomobile.png");
     background-repeat: no-repeat;
     background-size: cover;

@@ -51,42 +51,47 @@ footer {
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 60px 24px;
-  gap: 30px;
+  justify-content: center;
+  align-items: center;
   background-color: #232127;
 }
+footer .footer {
+  max-width: 1240px;
+  display: flex;
+  padding: 60px 24px;
+}
 @media (min-width: 768px) {
-  footer {
+  footer .footer {
     flex-direction: initial;
     justify-content: space-around;
   }
 }
-footer figure {
+footer .footer figure {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-footer nav {
+footer .footer nav {
   display: flex;
   justify-content: center;
   gap: 20px;
 }
 @media (min-width: 768px) {
-  footer nav {
+  footer .footer nav {
     gap: 40px;
   }
 }
-footer nav a {
+footer .footer nav a {
   text-decoration: none;
   color: white;
   font-size: 24px;
 }
 @media (min-width: 768px) {
-  footer nav a {
+  footer .footer nav a {
     font-size: 32px;
   }
 }
-footer nav a:hover {
+footer .footer nav a:hover {
   transform: scale(1.2);
 }
 
@@ -96,6 +101,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 main .contenedor-formulario {
   padding: 70px 24px 0 24px;
@@ -216,9 +222,20 @@ main .url-acortadas .contenedor-card {
   background-color: rgba(234, 234, 234, 0.782);
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   border-radius: 12px;
   overflow: hidden;
+  padding: 10px 20px;
+}
+@media (min-width: 768px) {
+  main .url-acortadas .contenedor-card {
+    padding: 10px 60px 10px 20px;
+  }
+}
+@media (min-width: 1440px) {
+  main .url-acortadas .contenedor-card {
+    padding: 10px 80px 10px 20px;
+  }
 }
 main .url-acortadas .contenedor-card .card {
   display: flex;
@@ -438,6 +455,7 @@ header .hero div p {
 }
 
 .info {
+  max-width: 1500px;
   margin-bottom: 80px;
   padding: 0px 24px 0 24px;
 }
@@ -519,6 +537,7 @@ header .hero div p {
 }
 
 .ultimo {
+  width: 100%;
   background-image: url("../../img/fondoformulariomobile.png");
   background-repeat: no-repeat;
   background-size: cover;

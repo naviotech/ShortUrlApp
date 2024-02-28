@@ -2,35 +2,41 @@ footer{
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 60px 24px;
-    gap:30px;
+    justify-content: center;
+    align-items: center;
     background-color: #232127;
-    @include breakpoint("tablet"){
-        flex-direction: initial;
-        justify-content: space-around;
-    }
-    figure{
+    .footer{
+        max-width: 1240px;
         display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    nav{
-        display: flex;
-        justify-content: center;
-        gap:20px;
+        padding: 60px 24px;
         @include breakpoint("tablet"){
-            gap:40px;
+            flex-direction: initial;
+            justify-content: space-around;
         }
-        a{
+        figure{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        nav{
+            display: flex;
+            justify-content: center;
+            gap:20px;
             @include breakpoint("tablet"){
-                font-size: 32px;
+                gap:40px;
             }
-            text-decoration: none;
-            color: white;
-            font-size: 24px;
-            &:hover{
-                transform: scale(1.2);
+            a{
+                @include breakpoint("tablet"){
+                    font-size: 32px;
+                }
+                text-decoration: none;
+                color: white;
+                font-size: 24px;
+                &:hover{
+                    transform: scale(1.2);
+                }
             }
         }
     }
+    
 }

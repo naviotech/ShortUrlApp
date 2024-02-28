@@ -145,27 +145,34 @@ const capturarUrl = ((e)=>{
         .then(data => {
             // Manejar la respuesta de la API
             let urlAcortada = data.link
-            let respuesta = listaUrl.some((e)=>{
-                return urlObtenida == e["oldUrl"];
-            })
-            if(!respuesta){
-                listaUrl.push({"oldUrl": urlObtenida, "newUrl": urlAcortada});
-                agregarHtml();
-            }else{
-                alert("La Url ya ha sido ingresada anteriormente!")
-            }
-            
+            if(listaUrl !== null){
+                if(listaUrl.length >0){
+                    let respuesta = listaUrl.some((e)=>{
+                        return urlObtenida == e["oldUrl"];
+                    })
+                    if(!respuesta){
+                        listaUrl.push({"oldUrl": urlObtenida, "newUrl": urlAcortada});
+                        agregarHtml();
+                    }else{
+                        alert("La Url ya ha sido ingresada anteriormente!")
+                    }
+                }else{
+                    listaUrl.push({"oldUrl": urlObtenida, "newUrl": urlAcortada});
+                        agregarHtml();
+                }
+            }            
         })
         .catch(error => {
             // Manejar errores
             console.error('Error al acortar la URL:', error);
         });
+        
 })
-
-urlValid.addEventListener("input",validarEntrada);
-boton.addEventListener("click", capturarUrl);
 document.addEventListener("DOMContentLoaded", () => {
     listaUrl = JSON.parse(localStorage.getItem('urls'))
     agregarHtml();
 })
+urlValid.addEventListener("input",validarEntrada);
+boton.addEventListener("click", capturarUrl);
+
 
