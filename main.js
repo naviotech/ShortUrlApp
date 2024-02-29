@@ -84,7 +84,7 @@ const agregarHtml = () =>{
     div.innerHTML = "";
     sincronizarLocalStorage();
     
-    listaUrl.forEach(element =>{
+    listaUrl.forEach((element) =>{
         const card = crearCard(element)
         const basura = document.createElement("a");
         basura.classList.add("icon-bin");
@@ -124,41 +124,49 @@ const capturarUrl = ((e)=>{
     let urlObtenida = url;
     url = "";
     urlValid.value=url;
+
     //peticion api
-        const accessToken = '3fcdcac7bd2e2a2f5405163b60df39d03ccf6f9d'; 
+        const apiKey = 'sk_4fc873df8f174e81b4295030b96fd4d6'; 
         const longUrl = urlObtenida; 
-
-        const data = {
-            long_url: longUrl
+        
+        const inputBody = {"url": `${longUrl}`,"expiry": "5m"};
+        const headers = {
+            'Content-Type':'application/json',
+            'Accept':'application/json',
+            'x-api-key':apiKey
         };
-
         // Realizar la solicitud a la API para acortar la URL
-        fetch('https://api-ssl.bitly.com/v4/shorten', {
+        fetch('https://api.manyapis.com/v1-create-short-url',{
             method: 'POST',
-            headers: {
-            'Authorization': `Bearer ${accessToken}`,
-            'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
+            body: JSON.stringify(inputBody),
+            headers: headers
         })
         .then(response => response.json())
         .then(data => {
             // Manejar la respuesta de la API
-            let urlAcortada = data.link
+            let urlAcortada = data.shortUrl;
             if(listaUrl !== null){
                 if(listaUrl.length >0){
                     let respuesta = listaUrl.some((e)=>{
                         return urlObtenida == e["oldUrl"];
                     })
                     if(!respuesta){
-                        listaUrl.push({"oldUrl": urlObtenida, "newUrl": urlAcortada});
+                        const objeto = {
+                            oldUrl: urlObtenida,
+                            newUrl: urlAcortada
+                        }
+                        listaUrl= [...listaUrl,objeto];
                         agregarHtml();
                     }else{
                         alert("La Url ya ha sido ingresada anteriormente!")
                     }
                 }else{
-                    listaUrl.push({"oldUrl": urlObtenida, "newUrl": urlAcortada});
-                        agregarHtml();
+                    const objeto = {
+                        oldUrl: urlObtenida,
+                        newUrl: urlAcortada
+                    }
+                    listaUrl= [...listaUrl,objeto];
+                    agregarHtml();
                 }
             }            
         })
@@ -168,11 +176,13 @@ const capturarUrl = ((e)=>{
         });
         
 })
-document.addEventListener("DOMContentLoaded", () => {
-    listaUrl = JSON.parse(localStorage.getItem('urls'))
-    agregarHtml();
-})
+
 urlValid.addEventListener("input",validarEntrada);
 boton.addEventListener("click", capturarUrl);
-
+document.addEventListener("DOMContentLoaded", () => {
+    listaUrl = JSON.parse(localStorage.getItem('urls'))
+    if (listaUrl !== null) {
+        agregarHtml();
+    }
+});
 
