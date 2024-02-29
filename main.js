@@ -155,7 +155,7 @@ const capturarUrl = ((e)=>{
                             oldUrl: urlObtenida,
                             newUrl: urlAcortada
                         }
-                        listaUrl= [...listaUrl,objeto];
+                        listaUrl.push(objeto);
                         agregarHtml();
                     }else{
                         alert("La Url ya ha sido ingresada anteriormente!")
@@ -165,7 +165,7 @@ const capturarUrl = ((e)=>{
                         oldUrl: urlObtenida,
                         newUrl: urlAcortada
                     }
-                    listaUrl= [...listaUrl,objeto];
+                    listaUrl.push(objeto);
                     agregarHtml();
                 }
             }            
@@ -180,8 +180,9 @@ const capturarUrl = ((e)=>{
 urlValid.addEventListener("input",validarEntrada);
 boton.addEventListener("click", capturarUrl);
 document.addEventListener("DOMContentLoaded", () => {
-    listaUrl = JSON.parse(localStorage.getItem('urls'))
-    if (listaUrl !== null) {
+    const listaUrlJson = localStorage.getItem("urls");
+    if(listaUrlJson !== null){
+        listaUrl = JSON.parse(listaUrlJson)
         agregarHtml();
     }
 });
